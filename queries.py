@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS usuario (
 );
 """
 
-SQL_DROP_TABLE = """
-DROP TABLE IF EXISTS usuario
+SQL_LIMPAR_TABLE = """
+DELETE FROM usuario;
 """
 
 SQL_INSERIR_USUARIO = """
@@ -45,16 +45,22 @@ WHERE email = ?;
 """
 
 
-SQL_OBTER_POR_ID = """
-SELECT * FROM usuario 
-WHERE id = ?"""
 
+
+
+
+
+
+
+
+
+#foda
 SQL_OBTER_SENHA_POR_EMAIL = """
-    SELECT senha
-    FROM usuario
-    WHERE email = ?
-"""
-
+        SELECT senha
+        FROM usuario
+        WHERE email = ?
+    """
+    
 SQL_OBTER_DADOS_POR_EMAIL = """
     SELECT id, nome, email, tipo_usuario
     FROM usuario

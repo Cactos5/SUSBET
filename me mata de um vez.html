@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist de Triagem</title>
+    <!-- Link do CSS do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-geral {
+            background-color: #f8f8f8e0;
+            color: #000000;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .checkbox-grupo, .radio-grupo {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .form-check-label {
+            margin-left: 8px;
+        }
+        .question-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .btn-check:checked + .btn-outline-primary, .btn-check:checked + .btn-outline-danger {
+            background-color: #005875;
+            border-color: #005875;
+            color: white;
+        }
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .row {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="https://submit.jotform.com/submit/243346162433654" method="post">
+            <div class="form-geral mt-5">
+                <h1 class="text-center mb-4">Checklist de Triagem para Visitantes e Funcionários</h1>
+                <div class="mb-4 text-center">
+                    <p>As seguintes perguntas serão feitas a todas as pessoas que entrarem no prédio.</p>
+                </div>
+
+                <div class="row">
+                    <!-- Primeira coluna para as perguntas -->
+                    <div class="col-md-6 question-column">
+                        <div class="mb-3">
+                            <label for="first_8" class="form-label">Nome do Individuo</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="text" id="first_8" name="q8_nameOf[first]" class="form-control" placeholder="Nome" required>
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" id="last_8" name="q8_nameOf[last]" class="form-control" placeholder="Sobrenome" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">1. O indivíduo lavou as mãos ou usou antisséptico?</label>
+                            <div class="radio-grupo">
+                                <div>
+                                    <input type="radio" id="input_3_0" name="q3_1Has" value="Sim" class="btn-check" autocomplete="off" required>
+                                    <label for="input_3_0" class="btn btn-outline-primary">Sim</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="input_3_1" name="q3_1Has" value="Não" class="btn-check" autocomplete="off" required>
+                                    <label for="input_3_1" class="btn btn-outline-danger">Não</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">2. Quais dos seguintes sintomas o indivíduo apresenta?</label>
+                            <div class="checkbox-grupo">
+                                <div class="form-check">
+                                    <input type="checkbox" id="input_4_0" name="q4_2Which[]" value="Febre" class="form-check-input">
+                                    <label for="input_4_0" class="form-check-label">Febre</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="input_4_1" name="q4_2Which[]" value="Tosse" class="form-check-input">
+                                    <label for="input_4_1" class="form-check-label">Tosse</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="input_4_2" name="q4_2Which[]" value="Falta de ar" class="form-check-input">
+                                    <label for="input_4_2" class="form-check-label">Falta de ar</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="input_7" class="form-label">3. Para os funcionários - verifique a temperatura e informe o resultado.</label>
+                            <input type="text" id="input_7" name="q7_3For7" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">4. O indivíduo teve contato com pessoas infectadas, suspeitas ou diagnosticadas com COVID-19?</label>
+                            <div class="radio-grupo">
+                                <div>
+                                    <input type="radio" id="input_9_0" name="q9_4Has9" value="Sim" class="btn-check" autocomplete="off" required>
+                                    <label for="input_9_0" class="btn btn-outline-primary">Sim</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="input_9_1" name="q9_4Has9" value="Não" class="btn-check" autocomplete="off" required>
+                                    <label for="input_9_1" class="btn btn-outline-danger">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Segunda coluna para mais perguntas -->
+                    <div class="col-md-6 question-column">
+                        <div class="mb-3">
+                            <label class="form-label">5. O indivíduo viajou para fora do país nos últimos 14 dias?</label>
+                            <div class="radio-grupo">
+                                <div>
+                                    <input type="radio" id="input_10_0" name="q10_5Has10" value="Sim" class="btn-check" autocomplete="off" required>
+                                    <label for="input_10_0" class="btn btn-outline-primary">Sim</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="input_10_1" name="q10_5Has10" value="Não" class="btn-check" autocomplete="off" required>
+                                    <label for="input_10_1" class="btn btn-outline-danger">Não</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">6. O indivíduo tem alguma alergia conhecida a medicamentos?</label>
+                            <div class="radio-grupo">
+                                <div>
+                                    <input type="radio" id="input_11_0" name="q11_6Allergies" value="Sim" class="btn-check" autocomplete="off" required>
+                                    <label for="input_11_0" class="btn btn-outline-primary">Sim</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="input_11_1" name="q11_6Allergies" value="Não" class="btn-check" autocomplete="off" required>
+                                    <label for="input_11_1" class="btn btn-outline-danger">Não</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="input_12" class="form-label">7. Se sim, por favor, especifique o medicamento:</label>
+                            <input type="text" id="input_12" name="q12_7Medication" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">8. O indivíduo tem histórico médico de doenças respiratórias?</label>
+                            <div class="radio-grupo">
+                                <div>
+                                    <input type="radio" id="input_13_0" name="q13_8Respiratory" value="Sim" class="btn-check" autocomplete="off" required>
+                                    <label for="input_13_0" class="btn btn-outline-primary">Sim</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="input_13_1" name="q13_8Respiratory" value="Não" class="btn-check" autocomplete="off" required>
+                                    <label for="input_13_1" class="btn btn-outline-danger">Não</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Link do JavaScript do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

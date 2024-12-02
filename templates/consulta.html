@@ -60,25 +60,6 @@
             </button>
         </div>
     </form>
-    <script>
-        document.getElementById('consultaForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            // Coleta todas as respostas do formulário
-            const formData = new FormData(event.target);
-            const dados = Object.fromEntries(formData.entries());
-
-            // Envia os dados como JSON
-            fetch('/Pessoa/Consulta-Rapida', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dados)
-            })
-                .then(response => response.json())
-                .then(data => console.log('Consulta salva:', data))
-                .catch(error => console.error('Erro:', error));
-        });
-    </script>
 </div>
 
 {% endblock %}
