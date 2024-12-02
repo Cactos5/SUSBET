@@ -1,0 +1,33 @@
+{% if "mensagem_aviso" in request.cookies: %}
+    {% set mensagem = request.cookies.get("mensagem_aviso") %}
+    {% set estilo = "warning" %}
+    {% set icone = "exclamation-circle-fill" %}
+{% endif %}
+
+{% if "mensagem_sucesso" in request.cookies: %}
+    {% set mensagem = request.cookies.get("mensagem_sucesso") %}
+    {% set estilo = "success" %}
+    {% set icone = "check-circle-fill" %}
+{% endif %}
+
+{% if "mensagem_info" in request.cookies: %}
+    {% set mensagem = request.cookies.get("mensagem_info") %}
+    {% set estilo = "info" %}
+    {% set icone = "info-circle-fill" %}
+{% endif %}
+
+{% if "mensagem_erro" in request.cookies: %}
+    {% set mensagem = request.cookies.get("mensagem_erro") %}
+    {% set estilo = "danger" %}
+    {% set icone = "x-circle-fill" %}
+{% endif %}
+
+    {% if mensagem: %}
+    <div class="alert alert-{{estilo}} alert-dismissible fade show d-flex align-items-center" role="alert">
+        <p class="mb-0 text-center">
+            <i class="bi bi-{{icone}} me-2"></i>
+            {{mensagem|safe}}
+        </p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endif %}

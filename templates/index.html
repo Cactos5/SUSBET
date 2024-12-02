@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" href="/static/css/estilos.css">
+{% endblock %}
+{% block titulo %}Susnet{% endblock %}
+{% block conteudo %}
+
+<h2 class="titulo-centro">Bem-Vindo ao Susnet!</h2>
+<div id="carrossel" class="carousel slide carousel-news" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carrossel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carrossel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carrossel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/static/img/depres.png" class="d-block w-100 carousel-img" alt="slide 1">
+        </div>
+        <div class="carousel-item">
+            <img src="/static/img/vacina.png" class="d-block w-100 carousel-img" alt="slide 2">
+        </div>
+        <div class="carousel-item">
+            <img src="/static/img/sus.png" class="d-block w-100 carousel-img" alt="slide 3">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carrossel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carrossel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<br>
+<h4 class="titulo-centro">Notícias Confiáveis sobre Saúde</h4>
+<p>Fique atualizado com as mais recentes e confiáveis informações sobre saúde e bem-estar. Nossa seleção de notícias é cuidadosamente curada para oferecer insights precisos e relevantes, ajudando você a tomar decisões informadas sobre sua saúde.</p>
+<br>
+<div class="row row-cols-1 row-cols-md-3 g-3">
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">CUIDADOS À SAÚDE E EDUCAÇÃO</h5>
+                <p class="card-text text-justify">Saúde destina R$ 1,6 milhão para ações do Programa Saúde na Escola no Espírito Santo.</p>
+                <a href="https://www.gov.br/saude/pt-br/assuntos/noticias-para-os-estados/espirito-santo/2024/novembro/saude-destina-r-1-6-milhao-para-acoes-do-programa-saude-na-escola-no-espirito-santo" class="btn btn-primary">Saiba Mais</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">FIM DA GOTINHA</h5>
+                <p class="card-text text-justify">Saúde adota novo esquema vacinal contra a poliomielite no Espírito Santo.</p>
+                <a href="https://www.gov.br/saude/pt-br/assuntos/noticias-para-os-estados/espirito-santo/2024/novembro/saude-adota-novo-esquema-vacinal-contra-a-poliomielite-no-espirito-santo" class="btn btn-primary">Saiba Mais</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">SAÚDE & MEIO AMBIENTE</h5>
+                <p class="card-text text-justify">Atenção, Espírito Santo: cinco cuidados essenciais com a saúde durante o período de queimadas.</p>
+                <a href="https://www.gov.br/saude/pt-br/assuntos/noticias-para-os-estados/espirito-santo/2024/outubro/atencao-espirito-santo-cinco-cuidados-essenciais-com-a-saude-durante-o-periodo-de-queimadas" class="btn btn-primary">Saiba Mais</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

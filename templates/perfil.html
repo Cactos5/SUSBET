@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block titulo %} Perfil do Usuário {% endblock %}
+{% block conteudo %}
+
+<h2 class="titulo-centro">Perfil do Usuário</h2>
+<img src="static/img/user.png" alt="user" width="120" height="120" class="rounded-circle mb-3">
+<div class="perfil-container">
+    <div class="perfil-item">
+        <strong>Nome:</strong>
+        <span>{{ usuario.nome }}</span>
+    </div>
+    <div class="perfil-item">
+        <strong>Data de Nascimento:</strong>
+        <span>{{ usuario.dataNascimento }}</span>
+    </div>
+    <div class="perfil-item">
+        <strong>Email:</strong>
+        <span>{{ usuario.email }}</span>
+    </div>
+    <div class="perfil-item">
+        <strong>CPF:</strong>
+        <span>{{ usuario.cpf }}</span>
+    </div>
+    <div class="perfil-item">
+        <strong>Telefone:</strong>
+        <span>{{ usuario.telefone }}</span>
+    </div>
+    <div class="perfil-item">
+        <strong>Endereço:</strong>
+        <span>{{ usuario.endereco }}</span>
+    </div>
+    <div class="perfil-item">
+        <strong>Senha:</strong>
+        <span>******</span> <!-- Para segurança, ocultar a senha -->
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/editar-perfil/{{ usuario.id }}" class="btn btn-primary">Editar Perfil</a>
+    </div>
+</div>
+
+{% endblock %}

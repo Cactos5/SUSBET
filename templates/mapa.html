@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block titulo %}Mapa com Locais Próximos{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-search/dist/leaflet-search.css" />
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #map {
+            height: calc(100vh - 56px);
+            width: 100%;
+        }
+
+        #locationsList {
+            position: absolute;
+            top: 70px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            z-index: 1000;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block conteudo %}
+
+    {% if mensagem %}
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+        <div class="toast align-items-center text-bg-{{ estilo }} border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="bi bi-{{ icone }} me-2"></i>
+                    {{ mensagem|safe }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Mapa -->
+    <div id="map"></div>
+    <div id="locationsList"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-search/dist/leaflet-search.js"></script>
+    <script>
+        var map = L.map('map').setView([0, 0], 13);
+        var markersLayer = new L.LayerGroup().addTo(map);
+        var userMarker = null;
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var userLocation = null;
+
+        function onLocationFound(e) {
+            userLocation = e.latlng;
+            map.setView(userLocation, 16);
+            if (userMarker) {
+                userMarker.setLatLng(userLocation);
+            } else {
+                userMarker = L.marker(userLocation).addTo(markersLayer).bindPopup('Você está aqui!').openPopup();
+            }
+        }
+
+        function onLocationError(e) {
+            alert('Erro ao obter sua localização: ' + e.message);
+        }
+
+        map.locate({ setView: true, maxZoom: 16 });
+        map.on('locationfound', onLocationFound);
+        map.on('locationerror', onLocationError);
+
+        function searchFacilities(event) {
+            event.preventDefault();
+            var searchTerm = document.getElementById("searchInput").value.toLowerCase();
+
+            markersLayer.clearLayers();
+            if (userMarker) {
+                userMarker.addTo(markersLayer);
+            }
+
+            var locationsList = document.getElementById('locationsList');
+            locationsList.innerHTML = '';
+
+            var overpassQuery = `[out:json];(
+                node(around:20000, ${userLocation.lat}, ${userLocation.lng});
+                way(around:20000, ${userLocation.lat}, ${userLocation.lng});
+                relation(around:20000, ${userLocation.lat}, ${userLocation.lng});
+            );out body;`;
+
+            var overpassUrl = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(overpassQuery);
+
+            fetch(overpassUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.elements.length === 0) {
+                        console.log("Nenhum local encontrado.");
+                        locationsList.style.display = 'none';
+                        return;
+                    }
+                    locationsList.style.display = 'block';
+
+                    var addedLocations = new Set();
+
+                    data.elements.forEach(function (element) {
+                        var lat = element.lat || (element.center && element.center.lat);
+                        var lon = element.lon || (element.center && element.center.lon);
+                        var name = element.tags && element.tags.name ? element.tags.name : "Local";
+
+                        var locationKey = `${lat},${lon},${name}`;
+                        if (lat && lon && name.toLowerCase().includes(searchTerm) && !addedLocations.has(locationKey)) {
+                            L.marker([lat, lon]).addTo(markersLayer).bindPopup("<strong>" + name + "</strong><br>Tipo: " + (element.tags.amenity || "Indefinido"));
+                            addLocationToList(name, element.tags.amenity);
+                            addedLocations.add(locationKey);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error("Erro ao buscar dados da Overpass API:", error);
+                    alert("Não foi possível carregar locais.");
+                });
+        }
+
+        function addLocationToList(name, type) {
+            var locationsList = document.getElementById('locationsList');
+            var locationItem = document.createElement('div');
+            locationItem.textContent = `${name} (${type || 'Indefinido'})`;
+            locationsList.appendChild(locationItem);
+        }
+    </script>
+{% endblock %}

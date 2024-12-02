@@ -1,0 +1,110 @@
+body.thumb {
+    transform: scale(0.4);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+main {
+    min-height: 80vh;
+}
+
+[class*='container'] {
+    background-clip: content-box;
+}
+
+.row [class*='col']:not(.row.row-cols-1.row-cols-md-3) {
+    background-color: #efefef;
+    background-clip: content-box;
+}
+
+
+
+.nav-link {
+    color: #2845a1;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+.nav-link.active .bi {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    background-color: #007bff;
+    outline: none;
+    box-shadow: none;
+    font-weight: bold;
+}
+
+
+.bi {
+    color: #015ec2;
+}
+
+.nav-link:hover .bi{
+    color: #ffffff;
+}
+
+.dropdown-menu {
+    background-color: #2845a1;
+    border: none;
+}
+
+.dropdown-item {
+    color: #ffffff;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: hsl(215, 98%, 26%);
+    color: #ffffff;
+}
+
+.dropdown-divider {
+    border-color: #001046;
+
+}
+
+.carousel {
+    width: 74%;
+    max-width: 100%;
+    margin: auto;
+}
+
+.carousel-img {
+    height: auto;
+    object-fit: cover;
+}
+
+/* TITULO pra poupar empilhar codigokkkkkk */
+.titulo-centro {
+    text-align: center;
+    font-weight: bold;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: auto;
+    right: 0;
+    z-index: 2000;
+}
+
+.img-custom {
+    width: 50%;
+}
+
+@media (max-width: 0px) {
+    .img-custom {
+        width: 75% !important;
+    }
+}

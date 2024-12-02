@@ -1,0 +1,38 @@
+.form-geral {
+    background-color: #f8f8f8e0;
+    color: #000000;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.checkbox-grupo, .radio-grupo {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.form-check-label {
+    margin-left: 8px;
+}
+.question-column {
+    display: flex;
+    flex-direction: column;
+}
+.btn-check:checked + .btn-outline-primary, .btn-check:checked + .btn-outline-danger {
+    background-color: #005875;
+    border-color: #005875;
+    color: white;
+}
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+.container {
+    max-width: 1200px;
+}
+.form-label {
+    font-weight: bold;
+}
+.row {
+    margin-bottom: 20px;
+}

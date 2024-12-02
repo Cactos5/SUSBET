@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block titulo %} Consulta Rápida {% endblock %}
+{% block conteudo %}
+
+<div class="container py-5">
+    <h2 class="text-center text-primary mb-4">🩺 Consulta Rápida</h2>
+    <p class="text-center text-muted mb-5">
+        Marque as opções que se aplicam a você para ajudar nossa equipe a identificar melhor seus sintomas.
+    </p>
+    
+    <form method="post" class="shadow p-4 rounded bg-light">
+        <div class="row">
+            {% for pergunta, id in [
+                ("Você apresentou febre nos últimos dias?", "febre"),
+                ("Você está sentindo dores de cabeça?", "dorCabeca"),
+                ("Você sente fadiga constante?", "fadiga"),
+                ("Você tem dificuldade para respirar?", "faltaAr"),
+                ("Você tem sentido palpitações?", "palpitacoes"),
+                ("Você tem sentido tontura?", "tontura"),
+                ("Você perdeu o apetite recentemente?", "perdaApetite"),
+                ("Você tem sentido náusea?", "nausea"),
+                ("Você apresentou vômito recentemente?", "vomito"),
+                ("Você perdeu peso sem explicação?", "perdaPeso"),
+                ("Você está sentindo dores abdominais?", "dorAbdomen"),
+                ("Você tem tossido com frequência?", "tosse")
+            ] %}
+            <div class="col-md-6 mb-4"> <!-- Aumentei o espaçamento para mb-4 -->
+                <label class="form-label">
+                    <i class="bi bi-question-circle"></i> {{ loop.index }}. {{ pergunta }}
+                </label>
+                <div class="d-flex align-items-center">
+                    <div class="form-check me-4"> <!-- Aumentei o espaçamento com me-4 -->
+                        <input class="form-check-input" type="radio" value="Sim" id="{{ id }}Sim" name="{{ id }}" required>
+                        <label class="form-check-label" for="{{ id }}Sim">
+                            Sim
+                        </label>
+                    </div>
+                    <div class="form-check me-4"> <!-- Aumentei o espaçamento com me-4 -->
+                        <input class="form-check-input" type="radio" value="Não" id="{{ id }}Nao" name="{{ id }}" required>
+                        <label class="form-check-label" for="{{ id }}Nao">
+                            Não
+                        </label>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-4"> <!-- Aumentei o espaçamento para mb-4 -->
+            <label for="descricaoSintomas" class="form-label">
+                <i class="bi bi-pencil"></i> 13. Descrição Adicional dos Sintomas
+            </label>
+            <textarea class="form-control" id="descricaoSintomas" name="descricaoSintomas" rows="4" 
+                      placeholder="Descreva outros sintomas aqui"></textarea>
+        </div>
+        
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg px-4">
+                <i class="bi bi-send"></i> Enviar
+            </button>
+        </div>
+    </form>
+    <script>
+        document.getElementById('consultaForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Coleta todas as respostas do formulário
+            const formData = new FormData(event.target);
+            const dados = Object.fromEntries(formData.entries());
+
+            // Envia os dados como JSON
+            fetch('/Pessoa/Consulta-Rapida', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dados)
+            })
+                .then(response => response.json())
+                .then(data => console.log('Consulta salva:', data))
+                .catch(error => console.error('Erro:', error));
+        });
+    </script>
+</div>
+
+{% endblock %}
